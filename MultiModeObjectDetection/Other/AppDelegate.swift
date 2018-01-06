@@ -2,7 +2,6 @@
 //  AppDelegate.swift
 //  MultiModeObjectDetection
 //
-//  Created by Hakan Tunc on 1/5/18.
 //  Copyright © 2018 Vanderbilt University. All rights reserved.
 //
 

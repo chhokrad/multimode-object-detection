@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00DBBF1F009C2D8F20569921 /* Pods_MultiModeObjectDetection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E296472E8C0E8A75B55BE49 /* Pods_MultiModeObjectDetection.framework */; };
+		DC6F9AC9A30292453EF080C8 /* Pods_MultiModeObjectDetectionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F9E9A41D8F53461B9B4D86 /* Pods_MultiModeObjectDetectionTests.framework */; };
+		F045FE1BE9C4C6F7963ABF3D /* Pods_MultiModeObjectDetectionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31875A52A5CC55699BB2D4DE /* Pods_MultiModeObjectDetectionUITests.framework */; };
 		FF3F16182000154F009DC327 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3F16172000154F009DC327 /* AppDelegate.swift */; };
 		FF3F161A2000154F009DC327 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3F16192000154F009DC327 /* ViewController.swift */; };
 		FF3F161D2000154F009DC327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF3F161B2000154F009DC327 /* Main.storyboard */; };
@@ -34,6 +37,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31875A52A5CC55699BB2D4DE /* Pods_MultiModeObjectDetectionUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultiModeObjectDetectionUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		340075C171264135585964DE /* Pods-MultiModeObjectDetectionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiModeObjectDetectionUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MultiModeObjectDetectionUITests/Pods-MultiModeObjectDetectionUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		38591588B13B2AD6AD94C684 /* Pods-MultiModeObjectDetectionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiModeObjectDetectionUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MultiModeObjectDetectionUITests/Pods-MultiModeObjectDetectionUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4D5C0B77F8FF06651D170E05 /* Pods-MultiModeObjectDetection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiModeObjectDetection.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MultiModeObjectDetection/Pods-MultiModeObjectDetection.debug.xcconfig"; sourceTree = "<group>"; };
+		4E296472E8C0E8A75B55BE49 /* Pods_MultiModeObjectDetection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultiModeObjectDetection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F2CF82B66308B0116FC3EDD /* Pods-MultiModeObjectDetectionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiModeObjectDetectionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MultiModeObjectDetectionTests/Pods-MultiModeObjectDetectionTests.release.xcconfig"; sourceTree = "<group>"; };
+		57D4DA19BC5F08F0C2A4E596 /* Pods-MultiModeObjectDetectionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiModeObjectDetectionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MultiModeObjectDetectionTests/Pods-MultiModeObjectDetectionTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8F592A12FAD44F43B473BD71 /* Pods-MultiModeObjectDetection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiModeObjectDetection.release.xcconfig"; path = "Pods/Target Support Files/Pods-MultiModeObjectDetection/Pods-MultiModeObjectDetection.release.xcconfig"; sourceTree = "<group>"; };
+		F2F9E9A41D8F53461B9B4D86 /* Pods_MultiModeObjectDetectionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultiModeObjectDetectionTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3F16142000154F009DC327 /* MultiModeObjectDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiModeObjectDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3F16172000154F009DC327 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF3F16192000154F009DC327 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00DBBF1F009C2D8F20569921 /* Pods_MultiModeObjectDetection.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC6F9AC9A30292453EF080C8 /* Pods_MultiModeObjectDetectionTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +82,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F045FE1BE9C4C6F7963ABF3D /* Pods_MultiModeObjectDetectionUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		014D7FDAD8F0178E6E1D01ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D5C0B77F8FF06651D170E05 /* Pods-MultiModeObjectDetection.debug.xcconfig */,
+				8F592A12FAD44F43B473BD71 /* Pods-MultiModeObjectDetection.release.xcconfig */,
+				57D4DA19BC5F08F0C2A4E596 /* Pods-MultiModeObjectDetectionTests.debug.xcconfig */,
+				4F2CF82B66308B0116FC3EDD /* Pods-MultiModeObjectDetectionTests.release.xcconfig */,
+				340075C171264135585964DE /* Pods-MultiModeObjectDetectionUITests.debug.xcconfig */,
+				38591588B13B2AD6AD94C684 /* Pods-MultiModeObjectDetectionUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		2B2243B34BB9683445C519AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4E296472E8C0E8A75B55BE49 /* Pods_MultiModeObjectDetection.framework */,
+				F2F9E9A41D8F53461B9B4D86 /* Pods_MultiModeObjectDetectionTests.framework */,
+				31875A52A5CC55699BB2D4DE /* Pods_MultiModeObjectDetectionUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FF3F160B2000154F009DC327 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +119,8 @@
 				FF3F162B2000154F009DC327 /* MultiModeObjectDetectionTests */,
 				FF3F16362000154F009DC327 /* MultiModeObjectDetectionUITests */,
 				FF3F16152000154F009DC327 /* Products */,
+				014D7FDAD8F0178E6E1D01ED /* Pods */,
+				2B2243B34BB9683445C519AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +137,10 @@
 		FF3F16162000154F009DC327 /* MultiModeObjectDetection */ = {
 			isa = PBXGroup;
 			children = (
-				FF3F16172000154F009DC327 /* AppDelegate.swift */,
 				FF3F16192000154F009DC327 /* ViewController.swift */,
 				FF3F161B2000154F009DC327 /* Main.storyboard */,
-				FF3F161E2000154F009DC327 /* Assets.xcassets */,
-				FF3F16202000154F009DC327 /* LaunchScreen.storyboard */,
 				FF3F16232000154F009DC327 /* Info.plist */,
+				FF3F16452000177D009DC327 /* Other */,
 			);
 			path = MultiModeObjectDetection;
 			sourceTree = "<group>";
@@ -125,6 +163,16 @@
 			path = MultiModeObjectDetectionUITests;
 			sourceTree = "<group>";
 		};
+		FF3F16452000177D009DC327 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				FF3F161E2000154F009DC327 /* Assets.xcassets */,
+				FF3F16202000154F009DC327 /* LaunchScreen.storyboard */,
+				FF3F16172000154F009DC327 /* AppDelegate.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF3F163C2000154F009DC327 /* Build configuration list for PBXNativeTarget "MultiModeObjectDetection" */;
 			buildPhases = (
+				406C390D539F239E460864E4 /* [CP] Check Pods Manifest.lock */,
 				FF3F16102000154F009DC327 /* Sources */,
 				FF3F16112000154F009DC327 /* Frameworks */,
 				FF3F16122000154F009DC327 /* Resources */,
+				CCD65F7FC68FC7FFAD9619F9 /* [CP] Embed Pods Frameworks */,
+				7FD0C5C9165A4649F9AC7D6B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +200,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF3F163F2000154F009DC327 /* Build configuration list for PBXNativeTarget "MultiModeObjectDetectionTests" */;
 			buildPhases = (
+				91F907FC35BEEF5E38AC6751 /* [CP] Check Pods Manifest.lock */,
 				FF3F16242000154F009DC327 /* Sources */,
 				FF3F16252000154F009DC327 /* Frameworks */,
 				FF3F16262000154F009DC327 /* Resources */,
+				010E575DC642DBF8978A8735 /* [CP] Embed Pods Frameworks */,
+				A3E2151E5E679A4F1B4E868C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +221,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF3F16422000154F009DC327 /* Build configuration list for PBXNativeTarget "MultiModeObjectDetectionUITests" */;
 			buildPhases = (
+				9D51719194062202227BCF21 /* [CP] Check Pods Manifest.lock */,
 				FF3F162F2000154F009DC327 /* Sources */,
 				FF3F16302000154F009DC327 /* Frameworks */,
 				FF3F16312000154F009DC327 /* Resources */,
+				4C7E23996A630D55A20E6BCC /* [CP] Embed Pods Frameworks */,
+				13F607A2301ED3FA83257C45 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,6 +310,158 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		010E575DC642DBF8978A8735 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MultiModeObjectDetectionTests/Pods-MultiModeObjectDetectionTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		13F607A2301ED3FA83257C45 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MultiModeObjectDetectionUITests/Pods-MultiModeObjectDetectionUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		406C390D539F239E460864E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MultiModeObjectDetection-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4C7E23996A630D55A20E6BCC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MultiModeObjectDetectionUITests/Pods-MultiModeObjectDetectionUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FD0C5C9165A4649F9AC7D6B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MultiModeObjectDetection/Pods-MultiModeObjectDetection-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91F907FC35BEEF5E38AC6751 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MultiModeObjectDetectionTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D51719194062202227BCF21 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MultiModeObjectDetectionUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3E2151E5E679A4F1B4E868C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MultiModeObjectDetectionTests/Pods-MultiModeObjectDetectionTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCD65F7FC68FC7FFAD9619F9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MultiModeObjectDetection/Pods-MultiModeObjectDetection-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MultiModeObjectDetection/Pods-MultiModeObjectDetection-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FF3F16102000154F009DC327 /* Sources */ = {
@@ -424,6 +633,7 @@
 		};
 		FF3F163D2000154F009DC327 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D5C0B77F8FF06651D170E05 /* Pods-MultiModeObjectDetection.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -439,6 +649,7 @@
 		};
 		FF3F163E2000154F009DC327 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F592A12FAD44F43B473BD71 /* Pods-MultiModeObjectDetection.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +665,7 @@
 		};
 		FF3F16402000154F009DC327 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57D4DA19BC5F08F0C2A4E596 /* Pods-MultiModeObjectDetectionTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -471,6 +683,7 @@
 		};
 		FF3F16412000154F009DC327 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F2CF82B66308B0116FC3EDD /* Pods-MultiModeObjectDetectionTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,6 +701,7 @@
 		};
 		FF3F16432000154F009DC327 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 340075C171264135585964DE /* Pods-MultiModeObjectDetectionUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -504,6 +718,7 @@
 		};
 		FF3F16442000154F009DC327 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38591588B13B2AD6AD94C684 /* Pods-MultiModeObjectDetectionUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
