@@ -17,6 +17,7 @@
 		FF3F16222000154F009DC327 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF3F16202000154F009DC327 /* LaunchScreen.storyboard */; };
 		FF3F162D2000154F009DC327 /* MultiModeObjectDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3F162C2000154F009DC327 /* MultiModeObjectDetectionTests.swift */; };
 		FF3F16382000154F009DC327 /* MultiModeObjectDetectionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3F16372000154F009DC327 /* MultiModeObjectDetectionUITests.swift */; };
+		FFC70E00200680C5009A73A7 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FFC70DFF200680C5009A73A7 /* Resnet50.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		FF3F16332000154F009DC327 /* MultiModeObjectDetectionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultiModeObjectDetectionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3F16372000154F009DC327 /* MultiModeObjectDetectionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiModeObjectDetectionUITests.swift; sourceTree = "<group>"; };
 		FF3F16392000154F009DC327 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFC70DFF200680C5009A73A7 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		FF3F16162000154F009DC327 /* MultiModeObjectDetection */ = {
 			isa = PBXGroup;
 			children = (
+				FFC70DFF200680C5009A73A7 /* Resnet50.mlmodel */,
 				FF3F16192000154F009DC327 /* ViewController.swift */,
 				FF3F161B2000154F009DC327 /* Main.storyboard */,
 				FF3F16232000154F009DC327 /* Info.plist */,
@@ -449,11 +452,17 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MultiModeObjectDetection/Pods-MultiModeObjectDetection-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BlueSocket/Socket.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Socket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF3F161A2000154F009DC327 /* ViewController.swift in Sources */,
+				FFC70E00200680C5009A73A7 /* Resnet50.mlmodel in Sources */,
 				FF3F16182000154F009DC327 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

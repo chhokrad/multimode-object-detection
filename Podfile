@@ -8,6 +8,8 @@ target 'MultiModeObjectDetection' do
   # Pods for MultiModeObjectDetection
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'BlueSocket'
+  pod 'Socket.IO-Client-Swift'
 
   target 'MultiModeObjectDetectionTests' do
     inherit! :search_paths
