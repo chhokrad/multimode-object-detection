@@ -12,6 +12,10 @@ import SocketIO
 import UIKit
 import Vision
 
+
+
+
+
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
 
     @IBOutlet weak var fromLat: UITextField!
@@ -19,23 +23,37 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     @IBOutlet weak var toLat: UITextField!
     @IBOutlet weak var toLng: UITextField!
 
-    let initialDeploymentServer = "http://10.67.101.1:3000/api"
+    let initialDeploymentServer = "http://10.66.11.62:3000/api"
     var remoteServer : String!
+    var manager_ : SocketManagerSpec!
+    var socket: SocketIOClient!
+    var CurrentFrame : CVPixelBuffer!
+    var CurrentImage : UIImage!
+    var CurrentFrameToSend : CMSampleBuffer!
 
     enum States {
         case initial
         case requesting_remote
         case running_local
+        case connect_remote
         case running_remote
         case empty
     }
     var state = States.initial
-
+    var isRunning = false
+    var ticks =  0
     @IBAction func start(_ sender: UIButton) {
-        while(true) {
-            runStateMachine()
-            if (state == .empty) {
-                break
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+            self.ticks += 1
+            print(Date())
+            print(self.ticks)
+            if (!self.isRunning) {
+                print("Running StateMachine")
+                self.isRunning = true
+                self.runStateMachine()
+            }
+            else{
+                print("Skipping This tick")
             }
         }
     }
@@ -50,15 +68,55 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             requestingRemoteHandler()
         case .running_local:
             print(States.running_local)
-            state = .empty
+            runningLocalHandler()
+        case .connect_remote:
+            print(States.connect_remote)
+            connectRemoteHandler()
         case .running_remote:
             print(States.running_remote)
-            state = .empty
+            print(remoteServer)
+            runningRemoteHandler()
         case .empty:
             print(States.empty)
         }
     }
-
+    
+    func connectRemoteHandler() {
+        initConnection()
+    }
+    
+    func runningRemoteHandler() {
+        if (!isConnected()){
+            state = .running_local
+        } else {
+            // This is async, be careful
+            sendFile()
+        }
+        isRunning = false;
+//        sendFile()
+//        if (!isConnected()){
+//            state = .running_local
+//            isRunning = false
+//        }
+    }
+    
+    func sendFile() {
+        let imageData = UIImageJPEGRepresentation(CurrentImage, 0.5)
+//        let imageData = UIImagePNGRepresentation(sendingImage)
+        let encodeImageData = imageData?.base64EncodedString()
+        self.socket.emit("NewFrame", encodeImageData!)
+    }
+    
+    func runningLocalHandler(){
+        manager_.disconnect()
+        manager_.removeSocket(socket)
+        performDetection()
+        if (isConnected()){
+            state = .connect_remote
+        }
+        isRunning = false
+    }
+    
     func requestingRemoteHandler() {
         var queryURL = URLComponents(string: initialDeploymentServer)
         queryURL?.queryItems = [
@@ -66,42 +124,49 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             URLQueryItem(name: "fromLng", value: fromLng.text),
             URLQueryItem(name: "toLat", value: toLat.text),
             URLQueryItem(name: "toLng", value: toLng.text)]
-        Alamofire.request(queryURL!).responseJSON { response in
-            if let result = response.result.value {
-                let json = JSON(result)
-                self.remoteServer = json["host"].string
-                self.state = .running_remote
-            } else {
-                print("error")
-                print(response)
-                self.state = .running_local
+            Alamofire.request(queryURL!).validate().responseJSON { response in
+                switch response.result {
+                    case .success:
+                        if let result = response.result.value {
+                            self.remoteServer = JSON(result)["host"].string
+                            self.state = .connect_remote
+                        } else {
+                            self.state = .running_local
+                        }
+                    case .failure:
+                        self.state = .running_local
+                }
+                self.isRunning = false
             }
-        }
     }
-
+    
     func initialHandler() {
+        initCamera()
         if (isConnected()) {
             state = .requesting_remote
         } else {
             state = .running_local
         }
+        isRunning = false
     }
-
-
 
     func isConnected() -> Bool {
         let isConnectedToWifi = NetworkReachabilityManager()?.isReachableOnEthernetOrWiFi
         return isConnectedToWifi!
     }
 
-
-//    Below is to be moved up
-
-    var timer: Timer!
-
-
-    let manager = SocketManager(socketURL: URL(string: "http://10.67.101.1:3001")!, config: [.log(true), .compress])
-    var socket: SocketIOClient!
+    func initConnection() {
+        print("initConnection")
+        print(remoteServer)
+        manager_ = SocketManager(socketURL: URL(string: remoteServer)!, config: [.log(true), .compress])
+        socket = manager_.defaultSocket
+        socket.on("connect") {data, ack in
+            print("socket connected")
+            self.state = .running_remote
+            self.isRunning = false
+        }
+        socket.connect()
+    }
 
     let identifierLabel: UILabel = {
         let label = UILabel()
@@ -111,67 +176,22 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         return label
     }()
 
-    func initConnection(){
-        socket = manager.defaultSocket
-        socket.on("connect") {data, ack in
-            print("socket connected")
-        }
-        socket.connect()
-    }
-
     func initCamera() {
-        // here is where we start up the camera
-        // for more details visit: https://www.letsbuildthatapp.com/course_video?id=1252
         let captureSession = AVCaptureSession()
         captureSession.sessionPreset = .photo
-
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
         guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
         captureSession.addInput(input)
-
         captureSession.startRunning()
-
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         view.layer.addSublayer(previewLayer)
         previewLayer.frame = view.frame
-
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(dataOutput)
-        //        VNImageRequestHandler(cgImage: <#T##CGImage#>, options: [:]).perform(<#T##requests: [VNRequest]##[VNRequest]#>)
-
         setupIdentifierConfidenceLabel()
     }
-
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        //        print("Camera was able to capture a frame:", Date())
-
-        guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-
-        // !!!Important
-        // make sure to go download the models at https://developer.apple.com/machine-learning/ scroll to the bottom
-        guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
-        let request = VNCoreMLRequest(model: model) { (finishedReq, err) in
-
-            //perhaps check the err
-
-            //            print(finishedReq.results)
-
-            guard let results = finishedReq.results as? [VNClassificationObservation] else { return }
-
-            guard let firstObservation = results.first else { return }
-
-            print(firstObservation.identifier, firstObservation.confidence)
-
-            DispatchQueue.main.async {
-                self.identifierLabel.text = "\(firstObservation.identifier) \(firstObservation.confidence * 100)"
-            }
-
-        }
-
-        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
-    }
-
+    
     fileprivate func setupIdentifierConfidenceLabel() {
         view.addSubview(identifierLabel)
         identifierLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32).isActive = true
@@ -180,25 +200,63 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         identifierLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 
-    func mainImpl() {
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            print("looping")
-            let isConnectedToWifi = NetworkReachabilityManager()?.isReachableOnEthernetOrWiFi
-            if (isConnectedToWifi!) {
-                self.socket.emit("image", Date().description)
-                print("connected")
-            } else {
-                print("no wifi")
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        CurrentFrameToSend = sampleBuffer
+        CurrentFrame = pixelBuffer
+        let ciimage : CIImage = CIImage(cvPixelBuffer: pixelBuffer)
+        let context:CIContext = CIContext.init(options: nil)
+        let cgImage:CGImage = context.createCGImage(ciimage, from: ciimage.extent)!
+        CurrentImage = UIImage.init(cgImage: cgImage)
+    }
+    
+    func imageFromSampleBuffer(sampleBuffer : CMSampleBuffer) -> UIImage
+    {
+        // Get a CMSampleBuffer's Core Video image buffer for the media data
+        let  imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+        // Lock the base address of the pixel buffer
+        CVPixelBufferLockBaseAddress(imageBuffer!, CVPixelBufferLockFlags.readOnly);
+        
+        
+        // Get the number of bytes per row for the pixel buffer
+        let baseAddress = CVPixelBufferGetBaseAddress(imageBuffer!);
+        
+        // Get the number of bytes per row for the pixel buffer
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer!);
+        // Get the pixel buffer width and height
+        let width = CVPixelBufferGetWidth(imageBuffer!);
+        let height = CVPixelBufferGetHeight(imageBuffer!);
+        
+        // Create a device-dependent RGB color space
+        let colorSpace = CGColorSpaceCreateDeviceRGB();
+        
+        // Create a bitmap graphics context with the sample buffer data
+        var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Little.rawValue
+        bitmapInfo |= CGImageAlphaInfo.premultipliedFirst.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
+        //let bitmapInfo: UInt32 = CGBitmapInfo.alphaInfoMask.rawValue
+        let context = CGContext.init(data: baseAddress, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo)
+        // Create a Quartz image from the pixel data in the bitmap graphics context
+        let quartzImage = context?.makeImage();
+        // Unlock the pixel buffer
+        CVPixelBufferUnlockBaseAddress(imageBuffer!, CVPixelBufferLockFlags.readOnly);
+        
+        // Create an image object from the Quartz image
+        let image = UIImage.init(cgImage: quartzImage!);
+        
+        return (image);
+    }
+    
+    func performDetection(){
+        guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
+        let request = VNCoreMLRequest(model: model) { (finishedReq, err) in
+            guard let results = finishedReq.results as? [VNClassificationObservation] else { return }
+            guard let firstObservation = results.first else { return }
+            print(firstObservation.identifier, firstObservation.confidence)
+            DispatchQueue.main.async {
+                self.identifierLabel.text = "\(firstObservation.identifier) \(firstObservation.confidence * 100)"
             }
         }
+        try? VNImageRequestHandler(cvPixelBuffer: CurrentFrame, options: [:]).perform([request])
     }
-
-
-
-    deinit {
-        timer?.invalidate()
-    }
-
-
 }
 
